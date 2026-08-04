@@ -1,0 +1,11 @@
+CREATE INDEX idx_habits_user_active            ON habits (user_id, is_active) WHERE deleted_at IS NULL;
+CREATE INDEX idx_habits_category               ON habits (category_id);
+CREATE INDEX idx_habit_logs_habit_date         ON habit_logs (habit_id, date DESC);
+CREATE INDEX idx_routine_days_user             ON routine_days (user_id);
+CREATE INDEX idx_routine_blocks_day_order      ON routine_blocks (routine_day_id, order_index);
+CREATE INDEX idx_routine_blocks_notify         ON routine_blocks (notify_start, start_time) WHERE notify_start = true;
+CREATE INDEX idx_routine_execution_block_date  ON routine_execution_logs (routine_block_id, date);
+CREATE INDEX idx_block_task_links_task         ON block_task_links (task_id);
+CREATE INDEX idx_sleep_logs_user_date          ON sleep_logs (user_id, date DESC);
+CREATE INDEX idx_user_integrations_user_provider ON user_integrations (user_id, provider);
+CREATE INDEX idx_notifications_user_unread     ON notifications (user_id, read) WHERE read = false;

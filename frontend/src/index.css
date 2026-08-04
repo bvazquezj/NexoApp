@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-canvas text-slate-700 font-sans;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-white;
+  }
+
+  ::selection {
+    @apply bg-blue-600/20 text-blue-900;
+  }
+}
+
+@layer components {
+  /* Form fields */
+  .field-label {
+    @apply block text-sm font-medium text-slate-600 mb-1.5;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 transition-shadow focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-blue-700 active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-blue-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* Cards */
+  .card {
+    @apply rounded-xl2 border border-slate-200 bg-white shadow-soft;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:border-blue-300 hover:shadow-lift;
+  }
+
+  /* Small data chip */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+}
+
+/* Scrollbars — refined */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(11, 17, 32, 0.18);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(11, 17, 32, 0.3);
+}
+
+/* Markdown body styles */
+@layer components {
+  .markdown-body h1 { @apply mt-4 mb-2 text-xl font-bold text-slate-900; }
+  .markdown-body h2 { @apply mt-4 mb-2 text-lg font-bold text-slate-900; }
+  .markdown-body h3 { @apply mt-3 mb-1.5 text-base font-semibold text-slate-900; }
+  .markdown-body h4 { @apply mt-2 mb-1 text-sm font-semibold text-slate-900; }
+  .markdown-body p { @apply my-2; }
+  .markdown-body ul { @apply my-2 list-disc space-y-1 pl-5; }
+  .markdown-body ol { @apply my-2 list-decimal space-y-1 pl-5; }
+  .markdown-body a { @apply text-blue-600 underline hover:text-blue-800; }
+  .markdown-body code { @apply rounded bg-slate-100 px-1 py-0.5 font-mono text-[0.85em] text-blue-700; }
+  .markdown-body pre { @apply my-3 overflow-x-auto rounded-xl bg-ink-900 p-3 font-mono text-xs text-slate-100; }
+  .markdown-body pre code { @apply bg-transparent p-0 text-inherit; }
+  .markdown-body blockquote { @apply my-3 border-l-4 border-slate-300 pl-3 text-slate-600 italic; }
+  .markdown-body hr { @apply my-4 border-slate-200; }
+  .markdown-body table { @apply my-3 w-full border-collapse text-left; }
+  .markdown-body th { @apply border-b border-slate-300 bg-slate-50 px-2 py-1 font-semibold; }
+  .markdown-body td { @apply border-b border-slate-100 px-2 py-1; }
+  .markdown-body input[type="checkbox"] { @apply mr-1; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

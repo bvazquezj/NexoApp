@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Content *)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(psql -U postgres -d adminpersonal -c \"\\\\dt\")",
+      "Bash(mv V1__create_task_types_table.sql V9__create_task_types_table.sql)",
+      "Bash(mv V2__insert_system_task_types.sql V10__insert_system_task_types.sql)",
+      "Bash(mv V3__create_tasks_table.sql V11__create_tasks_table.sql)",
+      "Bash(mv V4__create_task_comments_table.sql V12__create_task_comments_table.sql)",
+      "Bash(mv V5__create_saved_filters_table.sql V13__create_saved_filters_table.sql)",
+      "Bash(mkdir -p \"D:\\\\Proyectos\\\\IA\\\\AdministracionPersonal\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\adminpersonal\\\\finance\\\\domain\\\\model\")",
+      "Bash(mkdir -p \"D:\\\\Proyectos\\\\IA\\\\AdministracionPersonal\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\adminpersonal\\\\finance\\\\domain\\\\enums\")",
+      "Bash(mkdir -p \"D:\\\\Proyectos\\\\IA\\\\AdministracionPersonal\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\adminpersonal\\\\finance\\\\domain\\\\exception\")",
+      "Bash(mkdir -p \"D:\\\\Proyectos\\\\IA\\\\AdministracionPersonal\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\adminpersonal\\\\finance\\\\application\\\\service\")",
+      "Bash(mkdir -p \"D:\\\\Proyectos\\\\IA\\\\AdministracionPersonal\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\adminpersonal\\\\finance\\\\application\\\\dto\\\\request\")",
+      "Bash(mvn compile *)",
+      "Bash(where mvn *)",
+      "PowerShell(Get-Command *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\Proyectos\\\\IA\\\\AdministracionPersonal\\\\frontend\" -Recurse -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(echo \"Exit: $?\")",
+      "PowerShell(cd D:\\\\Proyectos\\\\IA\\\\AdministracionPersonal\\\\frontend; npx tsc -b --noEmit; if \\($LASTEXITCODE -eq 0\\) { Write-Output \"OK: typecheck passed\" } else { Write-Output \"FAIL: exit $LASTEXITCODE\" })",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(npx eslint *)",
+      "Bash(npx vite *)",
+      "Bash(xargs -I {} echo \"=== {} ===\")"
+    ]
+  }
+}

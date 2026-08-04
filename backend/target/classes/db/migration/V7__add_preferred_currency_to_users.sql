@@ -1,0 +1,2 @@
+ALTER TABLE users
+    ADD COLUMN preferred_currency VARCHAR(3) NOT NULL DEFAULT 'MXN';
