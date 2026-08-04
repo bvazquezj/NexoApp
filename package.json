@@ -1,0 +1,19 @@
+{
+  "name": "administracionpersonal-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "pnpm@11.18.0",
+  "workspaces": [
+    "frontend",
+    "shared",
+    "mobiles"
+  ],
+  "scripts": {
+    "build": "pnpm --filter frontend build",
+    "lint": "pnpm --filter frontend lint",
+    "dev": "pnpm --filter frontend dev"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.6"
+  }
+}

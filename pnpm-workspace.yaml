@@ -1,0 +1,7 @@
+packages:
+  - 'frontend'
+  - 'shared'
+  - 'mobile'
+  - 'mobiles'
+allowBuilds:
+  unrs-resolver: false
