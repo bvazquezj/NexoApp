@@ -3,9 +3,9 @@ spring:
     name: adminpersonal-backend
 
   datasource:
-    url: ${DB_URL:jdbc:postgresql://ep-billowing-leaf-avdk0iyt-pooler.c-11.us-east-1.aws.neon.tech/neondb?sslmode=require}
-    username: ${DB_USERNAME:neondb_owner}
-    password: ${DB_PASSWORD:npg_aD4tkgof8EZd}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/adminpersonal}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
 
   jpa:
     hibernate:
@@ -25,6 +25,8 @@ server:
 # Los defaults son SOLO para desarrollo local y son intencionalmente débiles/genéricos.
 # Si arrancas sin las VARs reales, la app fallará el primer cifrado/JWT por longitud insuficiente.
 app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:8081}
   jwt:
     secret: ${JWT_SECRET:CHANGE_ME_dev_only_jwt_secret_must_be_at_least_256_bits_long_replace_in_production}
     access-token-expiration-seconds: 900
