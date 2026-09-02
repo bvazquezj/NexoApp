@@ -312,3 +312,99 @@ Tras este módulo:
 
 Total estimado de archivos backend hasta ahora: ~400 archivos Java + 45 migraciones Flyway.
 Total frontend: ~80 archivos TS/TSX.
+
+---
+
+## Guía clara de despliegue a producción (Vercel + Render + Expo)
+
+### 1) Backend en Render (Spring Boot)
+
+Archivos preparados:
+- `render.yaml` (Blueprint)
+- `backend/Dockerfile`
+- `backend/.dockerignore`
+- `backend/.env.render.example`
+
+Pasos:
+1. En Render, crear servicio con **Blueprint** usando `render.yaml`.
+2. Render creará el web service `nexoapp-backend` (la DB en este caso es Neon externa).
+3. En variables del servicio backend, completar:
+   - `CORS_ALLOWED_ORIGINS` = URL de Vercel (o múltiples separadas por coma)
+   - `APP_BASE_URL` = URL pública del frontend
+   - `DB_URL` = JDBC de Neon (pooler + `sslmode=require&channelBinding=require`)
+   - `DB_USERNAME` y `DB_PASSWORD` = credenciales de Neon
+   - `JWT_SECRET` = secreto fuerte (>= 256 bits)
+   - `ENCRYPTION_MASTER_KEY` = base64 de 32 bytes
+4. Deployar y validar:
+   - `GET https://TU_BACKEND.onrender.com/api/health` debe devolver `204`.
+
+Comando recomendado para generar `ENCRYPTION_MASTER_KEY`:
+```bash
+openssl rand -base64 32
+```
+
+### 2) Frontend en Vercel (Vite monorepo)
+
+Archivo preparado:
+- `vercel.json` (root del repo)
+
+Configuración ya resuelta:
+- Build monorepo: `pnpm --filter frontend build`
+- Output: `frontend/dist`
+- Rewrites SPA a `index.html`
+
+Variable obligatoria en Vercel:
+- `VITE_API_BASE_URL` = `https://TU_BACKEND.onrender.com`
+
+Código listo para usar esta variable:
+- `frontend/src/main.tsx` inicializa `setApiBaseUrl(import.meta.env.VITE_API_BASE_URL)`.
+
+Checklist Vercel:
+1. Importar el repo en Vercel.
+2. Confirmar que use `vercel.json`.
+3. Cargar variable `VITE_API_BASE_URL`.
+4. Deployar.
+
+### 3) Expo (EAS Build / Submit)
+
+Archivos preparados:
+- `mobiles/eas.json`
+- `mobiles/.env.example`
+- scripts nuevos en `mobiles/package.json`
+
+Scripts listos:
+- `pnpm --filter mobiles eas:configure`
+- `pnpm --filter mobiles build:android`
+- `pnpm --filter mobiles build:ios`
+- `pnpm --filter mobiles submit:android`
+- `pnpm --filter mobiles submit:ios`
+
+Pasos:
+1. Login Expo: `npx eas-cli@latest login`
+2. Configurar proyecto EAS una vez:
+   - `pnpm --filter mobiles eas:configure`
+3. Construir binarios:
+   - Android: `pnpm --filter mobiles build:android`
+   - iOS: `pnpm --filter mobiles build:ios`
+4. Publicar en stores con submit scripts.
+
+### 4) Orden recomendado de despliegue
+
+1. Render backend
+2. Vercel frontend (ya con URL real de Render en `VITE_API_BASE_URL`)
+3. Expo builds (apuntando al backend productivo)
+
+### 5) Variables mínimas por entorno
+
+Backend Render:
+- `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`
+- `JWT_SECRET`
+- `ENCRYPTION_MASTER_KEY`
+- `CORS_ALLOWED_ORIGINS`
+- `APP_BASE_URL`
+
+Frontend Vercel:
+- `VITE_API_BASE_URL`
+
+Expo:
+- `EXPO_PUBLIC_API_BASE_URL` (si conectas app móvil al backend real)
