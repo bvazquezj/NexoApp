@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { setApiBaseUrl } from '@adminpersonal/shared';
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
@@ -8,6 +9,8 @@ import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useResponsive } from '@/hooks/use-responsive';
 import { useTheme } from '@/hooks/use-theme';
+
+setApiBaseUrl(process.env.EXPO_PUBLIC_API_BASE_URL);
 
 function TabIcon({
   name,
