@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobiles",
-    "slug": "mobiles",
+    "slug": "bvjuarez",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -38,6 +38,13 @@
     ],
     "experiments": {
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1de5680d-62b4-433a-bbd3-d83cdbb18638"
+      }
+    },
+    "owner": "bvazquezjs-team"
   }
 }
