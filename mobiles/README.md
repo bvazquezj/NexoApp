@@ -16,6 +16,12 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
+3. Configure the API
+
+   Copy `.env.example` to `.env` and set `EXPO_PUBLIC_API_BASE_URL` to the
+   absolute URL of the backend API. Expo inlines `EXPO_PUBLIC_*` variables
+   when bundling the app, so restart the development server after changing it.
+
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)

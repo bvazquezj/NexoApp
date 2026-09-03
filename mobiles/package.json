@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "dependencies": {
+    "@adminpersonal/shared": "workspace:*",
     "@expo/ui": "0.2.0-canary-20260121-a63c0dd",
     "@expo/vector-icons": "^15.1.1",
     "expo": "~54.0.36",
